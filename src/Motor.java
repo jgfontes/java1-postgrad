@@ -1,4 +1,4 @@
-public class Motor {
+public class Motor implements Calcular{
     private int qtdPist;
     private int potencia;
 
@@ -38,5 +38,10 @@ public class Motor {
                 " - Potência: " + this.potencia + " CV\n" +
                 "*********************";
         return returnString;
+    }
+
+    @Override
+    public int calcular() {
+        return 0;
     }
 }

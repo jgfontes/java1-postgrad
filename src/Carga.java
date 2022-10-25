@@ -1,4 +1,4 @@
-final public class Carga extends Veiculo {
+final public class Carga extends Veiculo implements Calcular {
     private int cargaMax;
     private int tara;
 
@@ -46,5 +46,10 @@ final public class Carga extends Veiculo {
                 " - Velocidade Máxima: " + calcVel(getVelocMax()) + " cm/h" + "\n";
         returnString += super.toString();
         return returnString;
+    }
+
+    @Override
+    public int calcular() {
+        return 0;
     }
 }
