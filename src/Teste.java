@@ -1,125 +1,125 @@
 import java.util.ArrayList;
 
 public class Teste {
+    private static Leitura leituraObj = new Leitura();
+    private static ArrayList<Carga> cargaArray = new ArrayList<Carga>();
+    private static ArrayList<Passeio> passeioArray = new ArrayList<Passeio>();
+
     public static void main(String[] args) {
-        ArrayList<Veiculo> veiculosArray = new ArrayList<Veiculo>();
 
-        //Test default constructor;
-        veiculosArray.add( new Carga());
-        veiculosArray.add(new Passeio());
-        veiculosArray.add(new Carga());
-        veiculosArray.add(new Passeio());
-        veiculosArray.add(new Carga(
-                "LEU-4567",
-                "Audi",
-                "Cargavel",
-                "Azul",
-                100,
-                8,
-                new Motor(
-                        8,
-                        150
-                ),
-                8000,
-                25
-        ));
-        veiculosArray.add(new Passeio(
-                "FRX-1234",
-                "Ford",
-                "Ka",
-                "Branco",
-                200,
-                4,
-                new Motor(
-                        6,
-                        85
-                ),
-                5
-        ));
-        veiculosArray.add(new Carga(
-                "LEU-5678",
-                "Audi",
-                "Cargavel",
-                "Azul",
-                100,
-                8,
-                new Motor(
-                        8,
-                        150
-                ),
-                8000,
-                25
-        ));
-        veiculosArray.add(new Passeio(
-                "FRX-6789",
-                "Ford",
-                "Ka",
-                "Branco",
-                200,
-                4,
-                new Motor(
-                        6,
-                        85
-                ),
-                5
-        ));
+        String opcaoMenu = leituraObj.entDados(
+                "Sistema de Gestão de Veículos - Menu Inicial\n" +
+                "1. Cadastrar Veículo de Passeio\n" +
+                "2. Cadastrar Veículo de Carga\n" +
+                "3. Imprimir Todos os Veículos de Passeio\n" +
+                "4. Imprimir Todos os Veículos de Carga\n" +
+                "5. Imprimir Veículo de Passeio pela Placa\n" +
+                "6. Imprimir Veículo de Carga pela Placa\n" +
+                "7. Sair do Sistema\n\n" +
+                "Digitar Opção: ");
 
-        for (Veiculo veiculo : veiculosArray) {
-            System.out.println(veiculo);
+        switch (Integer.parseInt(opcaoMenu)) {
+            case 1:
+                String newPlacaP = leituraObj.entDados(" Inserir numero da placa: ");
+                String newMarca = leituraObj.entDados(" Inserir marca: ");
+                String newModeloP = leituraObj.entDados(" Inserir o nome do modelo: ");
+                String newCorP = leituraObj.entDados(" Inserir a cor do carro: ");
+                String newVelocMaxP = leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ");
+                String newQtdRodasP = leituraObj.entDados(" Inserir a quantidade de rodas do veículo: ");
+                String newQtdPistP = leituraObj.entDados(" Inserir a quantidade de pistões do motor do carro: ");
+                String newPotenciaP = leituraObj.entDados(" Inserir a potência do motor do carro: ");
+                String newQtdPassageirosP = leituraObj.entDados(" Inserir a quantidade de passageiros: ");
+
+                passeioArray.add(new Passeio(
+                        newPlacaP,
+                        newMarca,
+                        newModeloP,
+                        newCorP,
+                        Integer.parseInt(newVelocMaxP),
+                        Integer.parseInt(newQtdRodasP),
+                        new Motor(
+                                Integer.parseInt(newQtdPistP),
+                                Integer.parseInt(newPotenciaP)
+                        ),
+                        Integer.parseInt(newQtdPassageirosP)
+                ));
+                System.out.println("VEÍCULO PASSEIO CADASTRADO COM SUCESSO!\n\n");
+                break;
+
+            case 2:
+                String newPlacaC = leituraObj.entDados(" Inserir numero da placa: ");
+                String newMarcaC = leituraObj.entDados(" Inserir marca: ");
+                String newModeloC = leituraObj.entDados(" Inserir o nome do modelo: ");
+                String newCorC = leituraObj.entDados(" Inserir a cor do carro: ");
+                String newVelocMaxC = leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ");
+                String newQtdRodasC = leituraObj.entDados(" Inserir a quantidade de rodas do veículo: ");
+                String newQtdPistC = leituraObj.entDados(" Inserir a quantidade de pistões do motor do carro: ");
+                String newPotenciaC = leituraObj.entDados(" Inserir a potência do motor do carro: ");
+                String newTaraC = leituraObj.entDados(" Inserir a tara do veículo: ");
+                String newCargaMaxC = leituraObj.entDados(" Inserir a carga Max: ");
+
+                cargaArray.add(new Carga(
+                        newPlacaC,
+                        newMarcaC,
+                        newModeloC,
+                        newCorC,
+                        Integer.parseInt(newVelocMaxC),
+                        Integer.parseInt(newQtdRodasC),
+                        new Motor(
+                                Integer.parseInt(newQtdPistC),
+                                Integer.parseInt(newPotenciaC)
+                        ),
+                        Integer.parseInt(newTaraC),
+                        Integer.parseInt(newCargaMaxC)
+                ));
+                System.out.println("VEÍCULO CARGA CADASTRADO COM SUCESSO!\n\n");
+
+            case 3:
+                if(passeioArray.isEmpty()) {
+                    System.out.println("NÃO HÁ VEÍCULOS DE PASSEIO ARMAZENADOS!\n\n");
+                    break;
+                }
+                passeioArray.forEach(System.out::println);
+                break;
+
+            case 4:
+                if(cargaArray.isEmpty()) {
+                    System.out.println("NÃO HÁ VEÍCULOS DE CARGA ARMAZENADOS!\n\n");
+                    break;
+                }
+                cargaArray.forEach(System.out::println);
+                break;
+
+            case 5:
+                String buscarPlacaP = leituraObj.entDados(" Insera a placa do Veículo Passeio a ser buscado: ");
+                for(Veiculo buscarVeiculo : passeioArray) {
+                    if(buscarVeiculo.getPlaca() == buscarPlacaP) {
+                        System.out.println("Veículo encontrado: \n\n" + buscarVeiculo);
+                        break;
+                    }
+                }
+                System.out.println("Veículo passeio não encontrado. Tente novamente.");
+                break;
+
+            case 6:
+                String buscarPlacaC = leituraObj.entDados(" Insera a placa do Veículo Carga a ser buscado: ");
+                for(Veiculo buscarVeiculo : cargaArray) {
+                    if(buscarVeiculo.getPlaca() == buscarPlacaC) {
+                        System.out.println("Veículo encontrado: \n\n" + buscarVeiculo);
+                        break;
+                    }
+                }
+                System.out.println("Veículo Carga não encontrado. Tente novamente.");
+                break;
+
+            default:
+                System.out.println("Opção não encontrada. Por favor, selecionar opção >= 1 e <= 7");
         }
-
-        //Test using getters and setters
-        Carga cargaObj5 = new Carga();
-        Passeio passeioObj5 = new Passeio();
-
-        //Testing carga setters
-        cargaObj5.setPlaca("CAR-0912");
-        cargaObj5.setMarca("Chevrolet");
-        cargaObj5.setModelo("CargaTest");
-        cargaObj5.setCor("Amarelo");
-        cargaObj5.setVelocMax(100);
-        cargaObj5.setQtdRodas(10);
-        cargaObj5.setMotor(new Motor(
-                10,
-                300
-        ));
-        cargaObj5.setCargaMax(12000);
-        cargaObj5.setTara(200);
-
-        //Testing passeio setters
-        passeioObj5.setPlaca("DEF-5678");
-        passeioObj5.setMarca("Chevrolet");
-        passeioObj5.setModelo("Camaro");
-        passeioObj5.setCor("Amarelo");
-        passeioObj5.setVelocMax(300);
-        passeioObj5.setQtdRodas(4);
-        passeioObj5.setMotor(new Motor(
-                6,
-                467
-        ));
-        passeioObj5.setQtdPassageiros(5);
-
-        //Testing carga getters
-        System.out.println("\nTestando getters de Carga");
-        System.out.println(cargaObj5.getPlaca());
-        System.out.println(cargaObj5.getMarca());
-        System.out.println(cargaObj5.getModelo());
-        System.out.println(cargaObj5.getCor());
-        System.out.println(cargaObj5.getVelocMax());
-        System.out.println(cargaObj5.getQtdRodas());
-        System.out.println(cargaObj5.getMotor());
-        System.out.println(cargaObj5.getCargaMax());
-        System.out.println(cargaObj5.getTara());
-
-        //Testing passeio getters
-        System.out.println("\nTestando getters de Passeio");
-        System.out.println(passeioObj5.getPlaca());
-        System.out.println(passeioObj5.getMarca());
-        System.out.println(passeioObj5.getModelo());
-        System.out.println(passeioObj5.getCor());
-        System.out.println(passeioObj5.getVelocMax());
-        System.out.println(passeioObj5.getQtdRodas());
-        System.out.println(passeioObj5.getMotor());
-        System.out.println(passeioObj5.getQtdPassageiros());
     }
+
+
+
+
+
+
 }
