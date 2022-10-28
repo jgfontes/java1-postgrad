@@ -50,6 +50,15 @@ final public class Carga extends Veiculo implements Calcular {
 
     @Override
     public int calcular() {
-        return 0;
+        int somaNumeros = 0;
+
+        somaNumeros += getMotor().getQtdPist();
+        somaNumeros += getMotor().getPotencia();
+        somaNumeros += getQtdRodas();
+        somaNumeros += getVelocMax();
+        somaNumeros += getTara();
+        somaNumeros += getCargaMax();
+
+        return somaNumeros;
     }
 }

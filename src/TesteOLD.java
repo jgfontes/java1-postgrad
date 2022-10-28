@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Teste {
+public class TesteOLD {
     public static void main(String[] args) {
         ArrayList<Veiculo> veiculosArray = new ArrayList<Veiculo>();
 

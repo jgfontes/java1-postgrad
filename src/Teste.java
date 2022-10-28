@@ -8,8 +8,10 @@ public class Teste {
     public static void main(String[] args) {
         boolean continuaPrograma = true;
         int opcaoMenuInt = 0;
+        boolean continuaLoop = true;
 
         while(continuaPrograma) {
+            continuaLoop = true;
             String opcaoMenu = leituraObj.entDados(
                     "Sistema de Gestão de Veículos - Menu Inicial\n\n" +
                     "1. Cadastrar Veículo de Passeio\n" +
@@ -31,7 +33,7 @@ public class Teste {
 
             switch (opcaoMenuInt) {
                 case 1:
-                    while(true) {
+                    while(continuaLoop) {
                         //Validate if passeio array is full
                         if (passeioArray.size() >= 5) {
                             System.out.println("Lista de Veículos passeio já está cheia. Finalizando operação.\n");
@@ -47,39 +49,13 @@ public class Teste {
                             break;
                         }
 
-                        String newMarca = leituraObj.entDados(" Inserir marca: ");
-                        String newModeloP = leituraObj.entDados(" Inserir o nome do modelo: ");
-                        String newCorP = leituraObj.entDados(" Inserir a cor do carro: ");
-                        String newVelocMaxP = leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ");
-                        String newQtdRodasP = leituraObj.entDados(" Inserir a quantidade de rodas do veículo: ");
-                        String newQtdPistP = leituraObj.entDados(" Inserir a quantidade de pistões do motor do carro: ");
-                        String newPotenciaP = leituraObj.entDados(" Inserir a potência do motor do carro: ");
-                        String newQtdPassageirosP = leituraObj.entDados(" Inserir a quantidade de passageiros: ");
-
-                        passeioArray.add(new Passeio(
-                                newPlacaP,
-                                newMarca,
-                                newModeloP,
-                                newCorP,
-                                Integer.parseInt(newVelocMaxP),
-                                Integer.parseInt(newQtdRodasP),
-                                new Motor(
-                                        Integer.parseInt(newQtdPistP),
-                                        Integer.parseInt(newPotenciaP)
-                                ),
-                                Integer.parseInt(newQtdPassageirosP)
-                        ));
-
-                        //Validate if user wants do record another item
-                        String novoCadastro = leituraObj.entDados("Veículo cadastrado com sucesso. Gostaria de realizar outro cadastro? Digite 's' para sim e 'n' para não\n");
-                        if (novoCadastro.equals("n")) {
-                            break;
-                        }
+                        cadastraPasseio(passeioArray, newPlacaP);
+                        if (!checaNovoCadastro()) { continuaLoop = false; }
                     }
                     break;
 
                 case 2:
-                    while(true) {
+                    while(continuaLoop) {
                         //Validate if carga array is full
                         if (cargaArray.size() >= 5) {
                             System.out.println("Lista de Veículos carga já está cheia. Finalizando operação.");
@@ -96,42 +72,14 @@ public class Teste {
                             break;
                         }
 
-                        String newMarcaC = leituraObj.entDados(" Inserir marca: ");
-                        String newModeloC = leituraObj.entDados(" Inserir o nome do modelo: ");
-                        String newCorC = leituraObj.entDados(" Inserir a cor do carro: ");
-                        String newVelocMaxC = leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ");
-                        String newQtdRodasC = leituraObj.entDados(" Inserir a quantidade de rodas do veículo: ");
-                        String newQtdPistC = leituraObj.entDados(" Inserir a quantidade de pistões do motor do carro: ");
-                        String newPotenciaC = leituraObj.entDados(" Inserir a potência do motor do carro: ");
-                        String newTaraC = leituraObj.entDados(" Inserir a tara do veículo: ");
-                        String newCargaMaxC = leituraObj.entDados(" Inserir a carga Max: ");
-
-                        cargaArray.add(new Carga(
-                                newPlacaC,
-                                newMarcaC,
-                                newModeloC,
-                                newCorC,
-                                Integer.parseInt(newVelocMaxC),
-                                Integer.parseInt(newQtdRodasC),
-                                new Motor(
-                                        Integer.parseInt(newQtdPistC),
-                                        Integer.parseInt(newPotenciaC)
-                                ),
-                                Integer.parseInt(newTaraC),
-                                Integer.parseInt(newCargaMaxC)
-                        ));
-
-                        //Validate if user wants do record another item
-                        String novoCadastro = leituraObj.entDados("Veículo cadastrado com sucesso. Gostaria de realizar outro cadastro? Digite 's' para sim e 'n'para não\n");
-                        if (novoCadastro.equals("n")) {
-                            break;
-                        }
+                        cadastraCarga(cargaArray, newPlacaC);
+                        if (!checaNovoCadastro()) { continuaLoop = false; }
                     }
                     break;
 
                 case 3:
                     if (passeioArray.isEmpty()) {
-                        System.out.println("NÃO HÁ VEÍCULOS DE PASSEIO ARMAZENADOS!\n\n");
+                        System.out.println("Não há veículos de passeio armazenados!\n\n");
                         break;
                     }
                     passeioArray.forEach(System.out::println);
@@ -139,7 +87,7 @@ public class Teste {
 
                 case 4:
                     if (cargaArray.isEmpty()) {
-                        System.out.println("NÃO HÁ VEÍCULOS DE CARGA ARMAZENADOS!\n\n");
+                        System.out.println("Não há veículos de carga armazenados!\n\n");
                         break;
                     }
                     cargaArray.forEach(System.out::println);
@@ -183,6 +131,69 @@ public class Teste {
             }
         }
         return null;
+    }
+
+    public static void cadastraPasseio(ArrayList<Veiculo> passeioInputArray, String newPlacaP) {
+        String newMarca = leituraObj.entDados(" Inserir marca: ");
+        String newModeloP = leituraObj.entDados(" Inserir o nome do modelo: ");
+        String newCorP = leituraObj.entDados(" Inserir a cor do carro: ");
+        String newVelocMaxP = leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ");
+        String newQtdRodasP = leituraObj.entDados(" Inserir a quantidade de rodas do veículo: ");
+        String newQtdPistP = leituraObj.entDados(" Inserir a quantidade de pistões do motor do carro: ");
+        String newPotenciaP = leituraObj.entDados(" Inserir a potência do motor do carro: ");
+        String newQtdPassageirosP = leituraObj.entDados(" Inserir a quantidade de passageiros: ");
+
+        passeioInputArray.add(new Passeio(
+                newPlacaP,
+                newMarca,
+                newModeloP,
+                newCorP,
+                Integer.parseInt(newVelocMaxP),
+                Integer.parseInt(newQtdRodasP),
+                new Motor(
+                        Integer.parseInt(newQtdPistP),
+                        Integer.parseInt(newPotenciaP)
+                ),
+                Integer.parseInt(newQtdPassageirosP)
+        ));
+    }
+
+    public static void cadastraCarga(ArrayList<Veiculo> cargaInputArray, String newPlacaC) {
+        String newMarcaC = leituraObj.entDados(" Inserir marca: ");
+        String newModeloC = leituraObj.entDados(" Inserir o nome do modelo: ");
+        String newCorC = leituraObj.entDados(" Inserir a cor do carro: ");
+        String newVelocMaxC = leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ");
+        String newQtdRodasC = leituraObj.entDados(" Inserir a quantidade de rodas do veículo: ");
+        String newQtdPistC = leituraObj.entDados(" Inserir a quantidade de pistões do motor do carro: ");
+        String newPotenciaC = leituraObj.entDados(" Inserir a potência do motor do carro: ");
+        String newTaraC = leituraObj.entDados(" Inserir a tara do veículo: ");
+        String newCargaMaxC = leituraObj.entDados(" Inserir a carga Max: ");
+
+        cargaInputArray.add(new Carga(
+                newPlacaC,
+                newMarcaC,
+                newModeloC,
+                newCorC,
+                Integer.parseInt(newVelocMaxC),
+                Integer.parseInt(newQtdRodasC),
+                new Motor(
+                        Integer.parseInt(newQtdPistC),
+                        Integer.parseInt(newPotenciaC)
+                ),
+                Integer.parseInt(newTaraC),
+                Integer.parseInt(newCargaMaxC)
+        ));
+    }
+
+    public static boolean checaNovoCadastro() {
+        while(true) {
+            String novoCadastro = leituraObj.entDados("Veículo cadastrado com sucesso. Gostaria de realizar outro cadastro? Digite 's' para sim e 'n' para não\n");
+            if (novoCadastro.equals("n")) {
+                return false;
+            } else if (novoCadastro.equals("s")) {
+                return true;
+            }
+        }
     }
 
 }

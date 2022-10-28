@@ -1,4 +1,4 @@
-final public class Passeio extends Veiculo {
+final public class Passeio extends Veiculo implements Calcular {
     private int qtdPassageiros;
 
     //Default constructor
@@ -34,5 +34,17 @@ final public class Passeio extends Veiculo {
                 " - Velocidade Máxima: " + calcVel(getVelocMax()) + " m/h" + "\n";
         returnString += super.toString();
         return returnString;
+    }
+
+    @Override
+    public int calcular() {
+        int somaCaracteres = 0;
+
+        somaCaracteres += getPlaca().length();
+        somaCaracteres += getMarca().length();
+        somaCaracteres += getModelo().length();
+        somaCaracteres += getCor().length();
+
+        return somaCaracteres;
     }
 }
