@@ -9,6 +9,7 @@ public class Teste {
         boolean continuaPrograma = true;
         int opcaoMenuInt = 0;
         boolean continuaLoop = true;
+        BDVeiculos bancoDeDadosVeiculos = new BDVeiculos();
 
         while(continuaPrograma) {
             continuaLoop = true;
@@ -49,7 +50,7 @@ public class Teste {
                             break;
                         }
 
-                        cadastraPasseio(passeioArray, newPlacaP);
+                        bancoDeDadosVeiculos.cadastraPasseio(newPlacaP);
                         if (!checaNovoCadastro()) { continuaLoop = false; }
                     }
                     break;
@@ -72,30 +73,30 @@ public class Teste {
                             break;
                         }
 
-                        cadastraCarga(cargaArray, newPlacaC);
+                        bancoDeDadosVeiculos.cadastraCarga(newPlacaC);
                         if (!checaNovoCadastro()) { continuaLoop = false; }
                     }
                     break;
 
                 case 3:
-                    if (passeioArray.isEmpty()) {
+                    if (bancoDeDadosVeiculos.getPasseioArray().isEmpty()) {
                         System.out.println("Não há veículos de passeio armazenados!\n\n");
                         break;
                     }
-                    passeioArray.forEach(System.out::println);
+                    bancoDeDadosVeiculos.getPasseioArray().forEach(System.out::println);
                     break;
 
                 case 4:
-                    if (cargaArray.isEmpty()) {
+                    if (bancoDeDadosVeiculos.getCargaArray().isEmpty()) {
                         System.out.println("Não há veículos de carga armazenados!\n\n");
                         break;
                     }
-                    cargaArray.forEach(System.out::println);
+                    bancoDeDadosVeiculos.getCargaArray().forEach(System.out::println);
                     break;
 
                 case 5:
                     String buscarPlacaP = leituraObj.entDados(" Insera a placa do Veículo Passeio a ser buscado: ");
-                    Veiculo passeioBusca = buscaVeiculoPorPlaca(buscarPlacaP, passeioArray);
+                    Veiculo passeioBusca = bancoDeDadosVeiculos.buscaVeiculoPorPlaca(buscarPlacaP, bancoDeDadosVeiculos.getPasseioArray());
                     if(passeioBusca == null) {
                         System.out.println("Veículo Passeio não encontrado. Tente novamente.\n\n");
                         break;
@@ -105,7 +106,7 @@ public class Teste {
 
                 case 6:
                     String buscarPlacaC = leituraObj.entDados(" Insera a placa do Veículo Carga a ser buscado: ");
-                    Veiculo cargaBusca = buscaVeiculoPorPlaca(buscarPlacaC, cargaArray);
+                    Veiculo cargaBusca = bancoDeDadosVeiculos.buscaVeiculoPorPlaca(buscarPlacaC, bancoDeDadosVeiculos.getCargaArray());
                     if(cargaBusca == null) {
                         System.out.println("Veículo Carga não encontrado. Tente novamente.\n\n");
                         break;
