@@ -65,7 +65,8 @@ abstract class Veiculo {
         return velocMax;
     }
 
-    final public void setVelocMax(float velocMax) {
+    final public void setVelocMax(float velocMax) throws VelocException {
+        if (velocMax < 80 || velocMax > 110) { throw new VelocException() ;}
         this.velocMax = velocMax;
     }
 

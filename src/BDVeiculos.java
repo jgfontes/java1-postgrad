@@ -8,59 +8,23 @@ public class BDVeiculos {
     public BDVeiculos() {
     }
 
-    public static boolean cadastraPasseio(String newPlacaP) {
-        String newMarca = leituraObj.entDados(" Inserir marca: ");
-        String newModeloP = leituraObj.entDados(" Inserir o nome do modelo: ");
-        String newCorP = leituraObj.entDados(" Inserir a cor do carro: ");
-        String newVelocMaxP = leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ");
-        String newQtdRodasP = leituraObj.entDados(" Inserir a quantidade de rodas do veículo: ");
-        String newQtdPistP = leituraObj.entDados(" Inserir a quantidade de pistões do motor do carro: ");
-        String newPotenciaP = leituraObj.entDados(" Inserir a potência do motor do carro: ");
-        String newQtdPassageirosP = leituraObj.entDados(" Inserir a quantidade de passageiros: ");
+    public boolean cadastraPasseio(Passeio novoVeiculoPasseio) throws VeicExistException {
+        //Validate if Veiculo already exist
+        if(this.buscaVeiculoPorPlaca(novoVeiculoPasseio.getPlaca(), this.getPasseioArray()) != null) {
+            throw new VeicExistException();
+        }
 
-        passeioArray.add(new Passeio(
-                newPlacaP,
-                newMarca,
-                newModeloP,
-                newCorP,
-                Integer.parseInt(newVelocMaxP),
-                Integer.parseInt(newQtdRodasP),
-                new Motor(
-                        Integer.parseInt(newQtdPistP),
-                        Integer.parseInt(newPotenciaP)
-                ),
-                Integer.parseInt(newQtdPassageirosP)
-        ));
-
+        passeioArray.add(novoVeiculoPasseio);
         return true;
     }
 
-    public static boolean cadastraCarga(String newPlacaC) {
-        String newMarcaC = leituraObj.entDados(" Inserir marca: ");
-        String newModeloC = leituraObj.entDados(" Inserir o nome do modelo: ");
-        String newCorC = leituraObj.entDados(" Inserir a cor do carro: ");
-        String newVelocMaxC = leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ");
-        String newQtdRodasC = leituraObj.entDados(" Inserir a quantidade de rodas do veículo: ");
-        String newQtdPistC = leituraObj.entDados(" Inserir a quantidade de pistões do motor do carro: ");
-        String newPotenciaC = leituraObj.entDados(" Inserir a potência do motor do carro: ");
-        String newTaraC = leituraObj.entDados(" Inserir a tara do veículo: ");
-        String newCargaMaxC = leituraObj.entDados(" Inserir a carga Max: ");
+    public boolean cadastraCarga(Carga novoVeiculoCarga) throws VeicExistException {
+        //Validate if Veiculo already exists
+        if(this.buscaVeiculoPorPlaca(novoVeiculoCarga.getPlaca(), this.getCargaArray()) != null) {
+            throw new VeicExistException();
+        }
 
-        cargaArray.add(new Carga(
-                newPlacaC,
-                newMarcaC,
-                newModeloC,
-                newCorC,
-                Integer.parseInt(newVelocMaxC),
-                Integer.parseInt(newQtdRodasC),
-                new Motor(
-                        Integer.parseInt(newQtdPistC),
-                        Integer.parseInt(newPotenciaC)
-                ),
-                Integer.parseInt(newTaraC),
-                Integer.parseInt(newCargaMaxC)
-        ));
-
+        cargaArray.add(novoVeiculoCarga);
         return true;
     }
 
