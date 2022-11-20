@@ -31,14 +31,11 @@ public class Teste {
             }
 
             switch (opcaoMenuInt) {
-
                 //Cadastrar Veiculo passeio
                 case 1:
                     while(continuaLoop) {
-                        //Validate if passeio array is full
-                        if (bancoDeDadosVeiculos.getPasseioArray().size() >= 5) {
-                            System.out.println("Lista de Veículos passeio já está cheia. Finalizando operação.\n");
-                            leituraObj.entDados("Aperte <ENTER> para continuar\n\n");
+                        //Validate if carga array is full
+                        if (!validaVeiculoArray(bancoDeDadosVeiculos.getPasseioArray())) {
                             break;
                         }
 
@@ -51,7 +48,6 @@ public class Teste {
                         try {
                             novoVeiculoPasseio.setVelocMax(Float.parseFloat(leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ")));
                         } catch (VelocException e) {
-                            e.printStackTrace();
                             System.out.println("Por padrão, a velocidade máxima de 100 Km/h será atribuída ao Veículo passeio.\n");
                             novoVeiculoPasseio.setVelocMax(100);
                         }
@@ -64,7 +60,6 @@ public class Teste {
                         try {
                             bancoDeDadosVeiculos.cadastraPasseio(novoVeiculoPasseio);
                         } catch (VeicExistException e) {
-                            e.printStackTrace();
                             break;
                         }
 
@@ -76,9 +71,7 @@ public class Teste {
                 case 2:
                     while(continuaLoop) {
                         //Validate if carga array is full
-                        if (bancoDeDadosVeiculos.getCargaArray().size() >= 5) {
-                            System.out.println("Lista de Veículos carga já está cheia. Finalizando operação.");
-                            leituraObj.entDados("Aperte <ENTER> para continuar");
+                        if (!validaVeiculoArray(bancoDeDadosVeiculos.getCargaArray())) {
                             break;
                         }
 
@@ -91,7 +84,6 @@ public class Teste {
                         try {
                             novoVeiculoCarga.setVelocMax(Float.parseFloat(leituraObj.entDados(" Inserir a Veloc Max do carro (Km/h): ")));
                         } catch (VelocException e) {
-                            e.printStackTrace();
                             System.out.println("Por padrão, a velocidade máxima de 100 Km/h será atribuída ao Veículo passeio.\n");
                             novoVeiculoCarga.setVelocMax(100f);
                         }
@@ -103,7 +95,6 @@ public class Teste {
                         try {
                             bancoDeDadosVeiculos.cadastraCarga(novoVeiculoCarga);
                         } catch (VeicExistException e) {
-                            e.printStackTrace();
                             break;
                         }
 
@@ -160,7 +151,6 @@ public class Teste {
                     System.out.println("Opção não encontrada. Por favor, selecionar opção >= 1 e <= 7");
             }
         }
-
     }
 
     public static boolean checaNovoCadastro() {
@@ -172,6 +162,16 @@ public class Teste {
                 return true;
             }
         }
+    }
+
+    public static boolean validaVeiculoArray(ArrayList<Veiculo> arrayVeiculo) {
+        //Validate if passeio array is full
+        if (arrayVeiculo.size() >= 5) {
+            System.out.println("Lista de Veículos passeio já está cheia. Finalizando operação.\n");
+            leituraObj.entDados("Aperte <ENTER> para continuar");
+            return false;
+        }
+        return true;
     }
 
 }
