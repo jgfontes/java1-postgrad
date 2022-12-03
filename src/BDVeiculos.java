@@ -44,4 +44,20 @@ public class BDVeiculos {
         }
         return null;
     }
+
+    public void excluiTodosPasseio() {
+        passeioArray.clear();
+    }
+
+    public void excluiPasseioPorPlaca (String placa) {
+        passeioArray.removeIf(e -> e.getPlaca().equals(placa));
+    }
+
+    public void excluiTodosCarga() {
+        cargaArray.clear();
+    }
+
+    public void excluiCargaPorPlaca(String placa) {
+        cargaArray.removeIf(e -> e.getPlaca().equals(placa));
+    }
 }

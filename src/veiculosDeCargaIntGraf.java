@@ -66,7 +66,7 @@ public class veiculosDeCargaIntGraf implements ActionListener {
         if(objSource.equals(cadastrarBtn)) {
             cadastraCargaIntGraf.main(bancoDeDadosVeiculos);
         } else if(objSource.equals(consultarBtn)) {
-            consultarPelaPlacaIntGraf.main(bancoDeDadosVeiculos);
+//            consultarCargaPelaPlacaIntGraf.carregarJanela(bancoDeDadosVeiculos);
         } else if(objSource.equals(imprimirBtn)) {
 
         } else if(objSource.equals(sairBtn)) {

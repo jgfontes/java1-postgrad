@@ -3,31 +3,28 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class veiculosDePasseioIntGraf implements ActionListener {
+class VeiculosDePasseioIntGraf implements ActionListener {
 
-    private static JFrame gestaoDeVeiculosTela = new JFrame("Cadastra Passeio");
-    static veiculosDePasseioIntGraf janela = new veiculosDePasseioIntGraf();
-    static BDVeiculos bancoDeDadosVeiculos;
+    private static JFrame veiculosDePasseioTela = new JFrame("Cadastra Passeio");
 
     //Declare text fields
-    private static JLabel cadastrarTxt = new JLabel("cadastrarTxt");
-    private static JLabel consultarTxt = new JLabel("consultarTxt");
-    private static JLabel imprimirTxt = new JLabel("imprimirTxt");
-    private static JLabel sairTxt = new JLabel("sairTxt");
+    private JLabel cadastrarTxt = new JLabel("cadastrarTxt");
+    private JLabel consultarTxt = new JLabel("consultarTxt");
+    private JLabel imprimirTxt = new JLabel("imprimirTxt");
+    private JLabel sairTxt = new JLabel("sairTxt");
 
     //Declare Buttons
-    private static JButton cadastrarBtn = new JButton();
-    private static JButton consultarBtn = new JButton();
-    private static JButton imprimirBtn = new JButton();
-    private static JButton sairBtn = new JButton();
+    private JButton cadastrarBtn = new JButton();
+    private JButton consultarBtn = new JButton();
+    private JButton imprimirBtn = new JButton();
+    private JButton sairBtn = new JButton();
 
-    public static void main(BDVeiculos bancoDeDados) {
-        bancoDeDadosVeiculos = bancoDeDados;
+    public void carregarTela() {
         int larg = 500, alt = 500;
-        gestaoDeVeiculosTela.setSize(larg, alt);
-        gestaoDeVeiculosTela.setTitle("Veiculos de Passeio");
+        veiculosDePasseioTela.setSize(larg, alt);
+        veiculosDePasseioTela.setTitle("Veiculos de Passeio");
         // “EXIT_ON_CLOSE”: fecha a aplicação toda.
-        gestaoDeVeiculosTela.setDefaultCloseOperation(gestaoDeVeiculosTela.EXIT_ON_CLOSE);
+        veiculosDePasseioTela.setDefaultCloseOperation(veiculosDePasseioTela.EXIT_ON_CLOSE);
 
         //Set text fields configuration
         cadastrarTxt.setText("Cadastrar");
@@ -40,23 +37,23 @@ public class veiculosDePasseioIntGraf implements ActionListener {
         consultarBtn.setText("2");
         imprimirBtn.setText("3");
         sairBtn.setText("4");
-        cadastrarBtn.addActionListener(janela);
-        consultarBtn.addActionListener(janela);
-        imprimirBtn.addActionListener(janela);
-        sairBtn.addActionListener(janela);
+        cadastrarBtn.addActionListener(this);
+        consultarBtn.addActionListener(this);
+        imprimirBtn.addActionListener(this);
+        sairBtn.addActionListener(this);
 
         //Add buttons into the window and let it visible
-        gestaoDeVeiculosTela.add(cadastrarBtn);
-        gestaoDeVeiculosTela.add(cadastrarTxt);
-        gestaoDeVeiculosTela.add(consultarBtn);
-        gestaoDeVeiculosTela.add(consultarTxt);
-        gestaoDeVeiculosTela.add(imprimirBtn);
-        gestaoDeVeiculosTela.add(imprimirTxt);
-        gestaoDeVeiculosTela.add(sairBtn);
-        gestaoDeVeiculosTela.add(sairTxt);
+        veiculosDePasseioTela.add(cadastrarBtn);
+        veiculosDePasseioTela.add(cadastrarTxt);
+        veiculosDePasseioTela.add(consultarBtn);
+        veiculosDePasseioTela.add(consultarTxt);
+        veiculosDePasseioTela.add(imprimirBtn);
+        veiculosDePasseioTela.add(imprimirTxt);
+        veiculosDePasseioTela.add(sairBtn);
+        veiculosDePasseioTela.add(sairTxt);
 
-        gestaoDeVeiculosTela.setLayout(new FlowLayout());
-        gestaoDeVeiculosTela.setVisible(true);
+        veiculosDePasseioTela.setLayout(new FlowLayout());
+        veiculosDePasseioTela.setVisible(true);
     }
 
     @Override
@@ -64,13 +61,16 @@ public class veiculosDePasseioIntGraf implements ActionListener {
         Object objSource = evt.getSource();
 
         if(objSource.equals(cadastrarBtn)) {
-            cadastraCargaIntGraf.main(bancoDeDadosVeiculos);
+            CadastraPasseioIntGraf cadastraPasseioIntGraf = new CadastraPasseioIntGraf();
+            cadastraPasseioIntGraf.carregarJanela();
         } else if(objSource.equals(consultarBtn)) {
-            consultarPelaPlacaIntGraf.main(bancoDeDadosVeiculos);
+            ConsultarPasseioPelaPlacaIntGraf consultarPasseioPelaPlacaIntGraf = new ConsultarPasseioPelaPlacaIntGraf();
+            consultarPasseioPelaPlacaIntGraf.carregarJanela();
         } else if(objSource.equals(imprimirBtn)) {
-
+            ImprimirTodosPasseioIntGraf imprimirTodosPasseioIntGraf = new ImprimirTodosPasseioIntGraf();
+            imprimirTodosPasseioIntGraf.carregarJanela();
         } else if(objSource.equals(sairBtn)) {
-
+            veiculosDePasseioTela.dispose();
         }
 
     }

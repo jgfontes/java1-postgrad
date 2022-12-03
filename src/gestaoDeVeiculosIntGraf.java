@@ -7,14 +7,13 @@ public class gestaoDeVeiculosIntGraf implements ActionListener {
 
     private static JFrame gestaoDeVeiculosTela = new JFrame("Cadastra Passeio");
     static gestaoDeVeiculosIntGraf janela = new gestaoDeVeiculosIntGraf();
-    static BDVeiculos bancoDeDadosVeiculos;
+    static BDVeiculos bancoDeDadosVeiculos = new BDVeiculos();
 
     //Declare Buttons
     private static JButton passeioBtn = new JButton();
     private static JButton cargaBtn = new JButton();
 
     public static void main(BDVeiculos bancoDeDados) {
-        bancoDeDadosVeiculos = bancoDeDados;
         int larg = 500, alt = 500;
         gestaoDeVeiculosTela.setSize(larg, alt);
         gestaoDeVeiculosTela.setTitle("Cadastra Passeio");
@@ -41,9 +40,10 @@ public class gestaoDeVeiculosIntGraf implements ActionListener {
         Object objSource = evt.getSource();
 
         if (objSource.equals(passeioBtn)) {
-            veiculosDePasseioIntGraf.main(bancoDeDadosVeiculos);
+            VeiculosDePasseioIntGraf veiculosDePasseioIntGraf = new VeiculosDePasseioIntGraf();
+            veiculosDePasseioIntGraf.carregarTela();
         } else if (objSource.equals(cargaBtn)) {
-            veiculosDeCargaIntGraf.main(bancoDeDadosVeiculos);
+//            veiculosDeCargaIntGraf.main(bancoDeDadosVeiculos);
         }
     }
 }
