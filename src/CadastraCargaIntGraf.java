@@ -3,13 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class CadastraPasseioIntGraf implements ActionListener {
+public class CadastraCargaIntGraf implements ActionListener {
 
-    private JFrame cadastraPasseioTela = new JFrame("Cadastra Passeio");
+    private JFrame cadastraCargaTela = new JFrame("Cadastra Passeio");
     private BDVeiculos bancoDeDadosVeiculos = gestaoDeVeiculosIntGraf.bancoDeDadosVeiculos;
 
     //Declare JLabels -> Text Fields
-    private JLabel qtdPassageirosTxt = new JLabel("qtdPassageirosTxt");
+    private JLabel taraTxt = new JLabel("taraTxt");
+    private JLabel cargaMaxTxt = new JLabel("cargaMaxTxt");
     private JLabel placaTxt = new JLabel("placaTxt");
     private JLabel marcaTxt = new JLabel("marcaTxt");
     private JLabel modeloTxt = new JLabel("modeloTxt");
@@ -19,7 +20,8 @@ class CadastraPasseioIntGraf implements ActionListener {
     private JLabel qtdPistoesTxt = new JLabel("qtdPistoesTxt");
     private JLabel potenciaTxt = new JLabel("potenciaTxt");
     //Declare JTextFields -> Input Field
-    private JTextField qtdPassageirosInput = new JTextField(10);
+    private JTextField taraInput = new JTextField(10);
+    private JTextField cargaMaxInput = new JTextField(10);
     private JTextField placaInput = new JTextField(10);
     private JTextField marcaInput = new JTextField(10);
     private JTextField modeloInput = new JTextField(10);
@@ -34,12 +36,12 @@ class CadastraPasseioIntGraf implements ActionListener {
     private JButton novoBtn = new JButton();
     private JButton sairBtn = new JButton();
 
-    public void carregarJanela() {
-        cadastraPasseioTela.setLayout(new GridBagLayout());
-        cadastraPasseioTela.setSize(500, 500);
-        cadastraPasseioTela.setTitle("Cadastra Passeio");
+    public void carregarTela() {
+        cadastraCargaTela.setLayout(new GridBagLayout());
+        cadastraCargaTela.setSize(500, 500);
+        cadastraCargaTela.setTitle("Cadastra Passeio");
         // “EXIT_ON_CLOSE”: fecha a aplicação toda.
-        cadastraPasseioTela.setDefaultCloseOperation(cadastraPasseioTela.EXIT_ON_CLOSE);
+        cadastraCargaTela.setDefaultCloseOperation(cadastraCargaTela.EXIT_ON_CLOSE);
 
         //Set button texts
         cadastrarBtn.setText("Cadastrar");
@@ -52,7 +54,8 @@ class CadastraPasseioIntGraf implements ActionListener {
         sairBtn.addActionListener(this);
 
         //Set fixed text labels
-        qtdPassageirosTxt.setText("QtdPassageiros: ");
+        taraTxt.setText("Tara: ");
+        cargaMaxTxt.setText("Carga Max: ");
         placaTxt.setText("Placa: ");
         marcaTxt.setText("Marca: ");
         modeloTxt.setText("Modelo: ");
@@ -67,79 +70,84 @@ class CadastraPasseioIntGraf implements ActionListener {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-        cadastraPasseioTela.add(qtdPassageirosTxt, c);
+        cadastraCargaTela.add(taraTxt, c);
         c.gridx = 1;
         c.gridy = 0;
-        cadastraPasseioTela.add(qtdPassageirosInput, c);
+        cadastraCargaTela.add(taraInput, c);
         c.gridx = 0;
         c.gridy = 1;
-        cadastraPasseioTela.add(placaTxt, c);
+        cadastraCargaTela.add(cargaMaxTxt, c);
         c.gridx = 1;
         c.gridy = 1;
-        cadastraPasseioTela.add(placaInput, c);
+        cadastraCargaTela.add(cargaMaxInput, c);
         c.gridx = 0;
         c.gridy = 2;
-        cadastraPasseioTela.add(marcaTxt, c);
+        cadastraCargaTela.add(placaTxt, c);
         c.gridx = 1;
         c.gridy = 2;
-        cadastraPasseioTela.add(marcaInput, c);
+        cadastraCargaTela.add(placaInput, c);
         c.gridx = 0;
         c.gridy = 3;
-        cadastraPasseioTela.add(modeloTxt, c);
+        cadastraCargaTela.add(marcaTxt, c);
         c.gridx = 1;
         c.gridy = 3;
-        cadastraPasseioTela.add(modeloInput, c);
+        cadastraCargaTela.add(marcaInput, c);
         c.gridx = 0;
         c.gridy = 4;
-        cadastraPasseioTela.add(corTxt, c);
+        cadastraCargaTela.add(modeloTxt, c);
         c.gridx = 1;
         c.gridy = 4;
-        cadastraPasseioTela.add(corInput, c);
+        cadastraCargaTela.add(modeloInput, c);
         c.gridx = 0;
         c.gridy = 5;
-        cadastraPasseioTela.add(qtdRodasTxt, c);
+        cadastraCargaTela.add(corTxt, c);
         c.gridx = 1;
         c.gridy = 5;
-        cadastraPasseioTela.add(qtdRodasInput, c);
+        cadastraCargaTela.add(corInput, c);
         c.gridx = 0;
         c.gridy = 6;
-        cadastraPasseioTela.add(velocMaxTxt, c);
+        cadastraCargaTela.add(qtdRodasTxt, c);
         c.gridx = 1;
         c.gridy = 6;
-        cadastraPasseioTela.add(velocMaxInput, c);
+        cadastraCargaTela.add(qtdRodasInput, c);
         c.gridx = 0;
         c.gridy = 7;
-        cadastraPasseioTela.add(qtdPistoesTxt, c);
+        cadastraCargaTela.add(velocMaxTxt, c);
         c.gridx = 1;
         c.gridy = 7;
-        cadastraPasseioTela.add(qtdPistoesInput, c);
+        cadastraCargaTela.add(velocMaxInput, c);
         c.gridx = 0;
         c.gridy = 8;
-        cadastraPasseioTela.add(potenciaTxt, c);
+        cadastraCargaTela.add(qtdPistoesTxt, c);
         c.gridx = 1;
         c.gridy = 8;
-        cadastraPasseioTela.add(potenciaInput, c);
+        cadastraCargaTela.add(qtdPistoesInput, c);
         c.gridx = 0;
         c.gridy = 9;
-        cadastraPasseioTela.add(cadastrarBtn, c);
+        cadastraCargaTela.add(potenciaTxt, c);
         c.gridx = 1;
         c.gridy = 9;
-        cadastraPasseioTela.add(limparBtn, c);
+        cadastraCargaTela.add(potenciaInput, c);
+        c.gridx = 0;
+        c.gridy = 10;
+        cadastraCargaTela.add(cadastrarBtn, c);
+        c.gridx = 1;
+        c.gridy = 10;
+        cadastraCargaTela.add(limparBtn, c);
         c.gridx = 2;
-        c.gridy = 9;
-        cadastraPasseioTela.add(novoBtn, c);
+        c.gridy = 10;
+        cadastraCargaTela.add(novoBtn, c);
         c.gridx = 3;
-        c.gridy = 9;
-        cadastraPasseioTela.add(sairBtn, c);
-        cadastraPasseioTela.setVisible(true);
+        c.gridy = 10;
+        cadastraCargaTela.add(sairBtn, c);
+        cadastraCargaTela.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent evt) {
         Object objSource = evt.getSource();
 
         if (objSource.equals(cadastrarBtn)) {
-            cadastraPasseio();
-
+            cadastraCarga();
         } else if (objSource.equals(limparBtn)) {
             limpaValores();
         }
@@ -147,59 +155,50 @@ class CadastraPasseioIntGraf implements ActionListener {
             limpaValores();
         }
         else if (objSource.equals(sairBtn)) {
-            cadastraPasseioTela.dispose();
+            cadastraCargaTela.dispose();
         }
     }
 
-    public void cadastraPasseio() {
+    public void cadastraCarga() {
         if(validaCamposVazios()) {
             JOptionPane.showMessageDialog(null,"Todos os campos precisam estar preenchidos." , "ERRO",  JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        Passeio novoVeiculoPasseio = new Passeio();
-        novoVeiculoPasseio.setPlaca(placaInput.getText());
-        novoVeiculoPasseio.setMarca(marcaInput.getText());
-        novoVeiculoPasseio.setModelo(modeloInput.getText());
-        novoVeiculoPasseio.setCor(corInput.getText());
+        Carga novoVeiculoCarga = new Carga();
+        novoVeiculoCarga.setPlaca(placaInput.getText());
+        novoVeiculoCarga.setMarca(marcaInput.getText());
+        novoVeiculoCarga.setModelo(modeloInput.getText());
+        novoVeiculoCarga.setCor(corInput.getText());
         try {
-            novoVeiculoPasseio.setVelocMax(Float.parseFloat(velocMaxInput.getText()));
+            novoVeiculoCarga.setVelocMax(Float.parseFloat(velocMaxInput.getText()));
         } catch (VelocException e) {
             JOptionPane.showMessageDialog(null,"A velocidade não pode ser menor que 80 km/h e maior que 100 km/h.\n" +
                     "Por padrão, a velocidade máxima de 100 Km/h será atribuída ao Veículo passeio." ,
                     "ERRO",
                     JOptionPane.WARNING_MESSAGE);
             try {
-                novoVeiculoPasseio.setVelocMax(100);
+                novoVeiculoCarga.setVelocMax(100);
             } catch (VelocException ex) {}
         }
-        novoVeiculoPasseio.setQtdRodas(Integer.parseInt(qtdRodasInput.getText()));
-        novoVeiculoPasseio.getMotor().setQtdPist(Integer.parseInt(qtdPistoesInput.getText()));
-        novoVeiculoPasseio.getMotor().setPotencia(Integer.parseInt(potenciaInput.getText()));
-        novoVeiculoPasseio.setQtdPassageiros(Integer.parseInt(qtdPassageirosInput.getText()));
+        novoVeiculoCarga.setQtdRodas(Integer.parseInt(qtdRodasInput.getText()));
+        novoVeiculoCarga.getMotor().setQtdPist(Integer.parseInt(qtdPistoesInput.getText()));
+        novoVeiculoCarga.getMotor().setPotencia(Integer.parseInt(potenciaInput.getText()));
+        novoVeiculoCarga.setCargaMax(Integer.parseInt(cargaMaxInput.getText()));
+        novoVeiculoCarga.setTara(Integer.parseInt(taraInput.getText()));
 
         //Try to add Veiculo in the Database class
         try {
-            bancoDeDadosVeiculos.cadastraPasseio(novoVeiculoPasseio);
+            bancoDeDadosVeiculos.cadastraCarga(novoVeiculoCarga);
             JOptionPane.showMessageDialog(null,"Veículo Cadastrado com sucesso!" , "SUCESSO",  JOptionPane.INFORMATION_MESSAGE);
         } catch (VeicExistException e) {
             JOptionPane.showMessageDialog(null,"Um veículo com esta placa já existe. Tente novamente." , "ERRO",  JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    //Return 0 if fields are filled // return 1 if any of fields is empty
-    public boolean validaCamposVazios() {
-        JTextField[] camposArray = {qtdPassageirosInput, placaInput, marcaInput, modeloInput, corInput, qtdRodasInput, velocMaxInput, qtdPistoesInput, potenciaInput};
-        for (JTextField campo : camposArray) {
-            if (campo.getText().isBlank()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void limpaValores() {
-        qtdPassageirosInput.setText("");
+        taraInput.setText("");
+        cargaMaxInput.setText("");
         placaInput.setText("");
         marcaInput.setText("");
         modeloInput.setText("");
@@ -208,5 +207,15 @@ class CadastraPasseioIntGraf implements ActionListener {
         velocMaxInput.setText("");
         qtdPistoesInput.setText("");
         potenciaInput.setText("");
+    }
+
+    public boolean validaCamposVazios() {
+        JTextField[] camposArray = {taraInput, cargaMaxInput, placaInput, marcaInput, modeloInput, corInput, qtdRodasInput, velocMaxInput, qtdPistoesInput, potenciaInput};
+        for (JTextField campo : camposArray) {
+            if (campo.getText().isBlank()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

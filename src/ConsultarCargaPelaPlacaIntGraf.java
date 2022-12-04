@@ -3,13 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class ConsultarPasseioPelaPlacaIntGraf implements ActionListener {
+class ConsultarCargaPelaPlacaIntGraf implements ActionListener {
 
-    private JFrame consultarPelaPlacaTela = new JFrame("Cadastra Passeio");
+    private JFrame consultarPelaPlacaTela = new JFrame("Cadastra Carga");
     private BDVeiculos bancoDeDadosVeiculos = gestaoDeVeiculosIntGraf.bancoDeDadosVeiculos;
 
     //Declare JLabels -> Text Fields
-    private JLabel qtdPassageirosTxt = new JLabel("qtdPassageirosTxt");
+    private JLabel taraTxt = new JLabel("taraTxt");
+    private JLabel cargaMaxTxt = new JLabel("cargaTxt");
     private JLabel placaTxt = new JLabel("placaTxt");
     private JLabel marcaTxt = new JLabel("marcaTxt");
     private JLabel modeloTxt = new JLabel("modeloTxt");
@@ -19,7 +20,8 @@ class ConsultarPasseioPelaPlacaIntGraf implements ActionListener {
     private JLabel qtdPistoesTxt = new JLabel("qtdPistoesTxt");
     private JLabel potenciaTxt = new JLabel("potenciaTxt");
     //Declare JTextFields -> Input Field
-    private JTextField qtdPassageirosInput = new JTextField(10);
+    private JTextField taraInput = new JTextField(10);
+    private JTextField cargaMaxInput = new JTextField(10);
     private JTextField placaInput = new JTextField(10);
     private JTextField marcaInput = new JTextField(10);
     private JTextField modeloInput = new JTextField(10);
@@ -49,7 +51,8 @@ class ConsultarPasseioPelaPlacaIntGraf implements ActionListener {
         sairBtn.addActionListener(this);
 
         //Set fixed text labels
-        qtdPassageirosTxt.setText("QtdPassageiros: ");
+        taraTxt.setText("Tara: ");
+        cargaMaxTxt.setText("Carga Max: ");
         placaTxt.setText("Placa: ");
         marcaTxt.setText("Marca: ");
         modeloTxt.setText("Modelo: ");
@@ -64,68 +67,73 @@ class ConsultarPasseioPelaPlacaIntGraf implements ActionListener {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-        consultarPelaPlacaTela.add(placaTxt, c);
+        consultarPelaPlacaTela.add(taraTxt, c);
         c.gridx = 1;
         c.gridy = 0;
+        consultarPelaPlacaTela.add(taraInput, c);
+        c.gridx = 0;
+        c.gridy = 1;
+        consultarPelaPlacaTela.add(cargaMaxTxt, c);
+        c.gridx = 1;
+        c.gridy = 1;
+        consultarPelaPlacaTela.add(cargaMaxInput, c);
+        c.gridx = 0;
+        c.gridy = 2;
+        consultarPelaPlacaTela.add(placaTxt, c);
+        c.gridx = 1;
+        c.gridy = 2;
         consultarPelaPlacaTela.add(placaInput, c);
         c.gridx = 0;
-        c.gridy = 1;
-        consultarPelaPlacaTela.add(qtdPassageirosTxt, c);
-        c.gridx = 1;
-        c.gridy = 1;
-        consultarPelaPlacaTela.add(qtdPassageirosInput, c);
-        c.gridx = 0;
-        c.gridy = 2;
+        c.gridy = 3;
         consultarPelaPlacaTela.add(marcaTxt, c);
         c.gridx = 1;
-        c.gridy = 2;
+        c.gridy = 3;
         consultarPelaPlacaTela.add(marcaInput, c);
         c.gridx = 0;
-        c.gridy = 3;
+        c.gridy = 4;
         consultarPelaPlacaTela.add(modeloTxt, c);
         c.gridx = 1;
-        c.gridy = 3;
+        c.gridy = 4;
         consultarPelaPlacaTela.add(modeloInput, c);
         c.gridx = 0;
-        c.gridy = 4;
+        c.gridy = 5;
         consultarPelaPlacaTela.add(corTxt, c);
         c.gridx = 1;
-        c.gridy = 4;
+        c.gridy = 5;
         consultarPelaPlacaTela.add(corInput, c);
         c.gridx = 0;
-        c.gridy = 5;
+        c.gridy = 6;
         consultarPelaPlacaTela.add(qtdRodasTxt, c);
         c.gridx = 1;
-        c.gridy = 5;
+        c.gridy = 6;
         consultarPelaPlacaTela.add(qtdRodasInput, c);
         c.gridx = 0;
-        c.gridy = 6;
+        c.gridy = 7;
         consultarPelaPlacaTela.add(velocMaxTxt, c);
         c.gridx = 1;
-        c.gridy = 6;
+        c.gridy = 7;
         consultarPelaPlacaTela.add(velocMaxInput, c);
         c.gridx = 0;
-        c.gridy = 7;
+        c.gridy = 8;
         consultarPelaPlacaTela.add(qtdPistoesTxt, c);
         c.gridx = 1;
-        c.gridy = 7;
+        c.gridy = 8;
         consultarPelaPlacaTela.add(qtdPistoesInput, c);
         c.gridx = 0;
-        c.gridy = 8;
+        c.gridy = 9;
         consultarPelaPlacaTela.add(potenciaTxt, c);
         c.gridx = 1;
-        c.gridy = 8;
+        c.gridy = 9;
         consultarPelaPlacaTela.add(potenciaInput, c);
         c.gridx = 0;
-        c.gridy = 9;
+        c.gridy = 10;
         consultarPelaPlacaTela.add(consultarBtn, c);
         c.gridx = 1;
-        c.gridy = 9;
+        c.gridy = 10;
         consultarPelaPlacaTela.add(excluirBtn, c);
         c.gridx = 2;
-        c.gridy = 9;
+        c.gridy = 10;
         consultarPelaPlacaTela.add(sairBtn, c);
-
         consultarPelaPlacaTela.setVisible(true);
     }
 
@@ -133,42 +141,43 @@ class ConsultarPasseioPelaPlacaIntGraf implements ActionListener {
         Object objSource = evt.getSource();
 
         if (objSource.equals(consultarBtn)) {
-            consultaPasseio(placaInput.getText());
+            consultaCarga(placaInput.getText());
         }
         else if (objSource.equals(excluirBtn)) {
-            excluiPasseio(placaInput.getText());
+            excluiCarga(placaInput.getText());
         }
         else if (objSource.equals(sairBtn)) {
             consultarPelaPlacaTela.dispose();
         }
     }
 
-    public void consultaPasseio(String placa) {
-        Veiculo passeioBusca = bancoDeDadosVeiculos.buscaVeiculoPorPlaca(
+    public void consultaCarga(String placa) {
+        Veiculo cargaBusca = bancoDeDadosVeiculos.buscaVeiculoPorPlaca(
                 placa,
-                bancoDeDadosVeiculos.getPasseioArray());
-        if(passeioBusca == null) {
-            JOptionPane.showMessageDialog(null, "Veículo Passeio não encontrado. Insira outra placa.", "Erro", JOptionPane.ERROR_MESSAGE);
+                bancoDeDadosVeiculos.getCargaArray());
+        if(cargaBusca == null) {
+            JOptionPane.showMessageDialog(null, "Veículo Carga não encontrado. Insira outra placa.", "Erro", JOptionPane.ERROR_MESSAGE);
             limpaValores();
         } else {
-            qtdPassageirosInput.setText(Integer.toString(((Passeio) passeioBusca).getQtdPassageiros()));
-            placaInput.setText(passeioBusca.getPlaca());
-            marcaInput.setText(passeioBusca.getMarca());
-            modeloInput.setText(passeioBusca.getModelo());
-            corInput.setText(passeioBusca.getCor());
-            qtdRodasInput.setText(Integer.toString(passeioBusca.getQtdRodas()));
-            velocMaxInput.setText(Integer.toString(passeioBusca.getQtdRodas()));
-            qtdPistoesInput.setText(Integer.toString(passeioBusca.getQtdRodas()));
-            potenciaInput.setText(Integer.toString(passeioBusca.getMotor().getPotencia()));
+            taraInput.setText(Integer.toString(((Carga) cargaBusca).getTara()));
+            cargaMaxInput.setText(Integer.toString(((Carga) cargaBusca).getCargaMax()));
+            placaInput.setText(cargaBusca.getPlaca());
+            marcaInput.setText(cargaBusca.getMarca());
+            modeloInput.setText(cargaBusca.getModelo());
+            corInput.setText(cargaBusca.getCor());
+            qtdRodasInput.setText(Integer.toString(cargaBusca.getQtdRodas()));
+            velocMaxInput.setText(Integer.toString(cargaBusca.getQtdRodas()));
+            qtdPistoesInput.setText(Integer.toString(cargaBusca.getQtdRodas()));
+            potenciaInput.setText(Integer.toString(cargaBusca.getMotor().getPotencia()));
         }
     }
 
-    public void excluiPasseio(String placa) {
-        Veiculo passeioBusca = bancoDeDadosVeiculos.buscaVeiculoPorPlaca(
+    public void excluiCarga(String placa) {
+        Veiculo cargaBusca = bancoDeDadosVeiculos.buscaVeiculoPorPlaca(
                 placa,
-                bancoDeDadosVeiculos.getPasseioArray());
-        if(passeioBusca == null) {
-            JOptionPane.showMessageDialog(null, "Veículo Passeio não encontrado. Insira outra placa.", "Erro", JOptionPane.ERROR_MESSAGE);
+                bancoDeDadosVeiculos.getCargaArray());
+        if(cargaBusca == null) {
+            JOptionPane.showMessageDialog(null, "Veículo Carga não encontrado. Insira outra placa.", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
             bancoDeDadosVeiculos.excluiPasseioPorPlaca(placa);
             JOptionPane.showMessageDialog(null,"Veículo excluído com sucesso!" , "SUCESSO",  JOptionPane.INFORMATION_MESSAGE);
@@ -177,7 +186,8 @@ class ConsultarPasseioPelaPlacaIntGraf implements ActionListener {
     }
 
     public void limpaValores() {
-        qtdPassageirosInput.setText("");
+        taraInput.setText("");
+        cargaMaxInput.setText("");
         placaInput.setText("");
         marcaInput.setText("");
         modeloInput.setText("");

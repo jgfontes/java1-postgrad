@@ -43,7 +43,8 @@ public class gestaoDeVeiculosIntGraf implements ActionListener {
             VeiculosDePasseioIntGraf veiculosDePasseioIntGraf = new VeiculosDePasseioIntGraf();
             veiculosDePasseioIntGraf.carregarTela();
         } else if (objSource.equals(cargaBtn)) {
-//            veiculosDeCargaIntGraf.main(bancoDeDadosVeiculos);
+            VeiculosDeCargaIntGraf veiculosDeCargaIntGraf = new VeiculosDeCargaIntGraf();
+            veiculosDeCargaIntGraf.carregarTela();
         }
     }
 }

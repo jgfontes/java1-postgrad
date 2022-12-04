@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 class VeiculosDePasseioIntGraf implements ActionListener {
 
-    private static JFrame veiculosDePasseioTela = new JFrame("Cadastra Passeio");
+    private JFrame veiculosDePasseioTela = new JFrame("Cadastra Passeio");
 
     //Declare text fields
     private JLabel cadastrarTxt = new JLabel("cadastrarTxt");
@@ -21,6 +21,7 @@ class VeiculosDePasseioIntGraf implements ActionListener {
 
     public void carregarTela() {
         int larg = 500, alt = 500;
+        veiculosDePasseioTela.setLayout(new GridBagLayout());
         veiculosDePasseioTela.setSize(larg, alt);
         veiculosDePasseioTela.setTitle("Veiculos de Passeio");
         // “EXIT_ON_CLOSE”: fecha a aplicação toda.
@@ -43,16 +44,32 @@ class VeiculosDePasseioIntGraf implements ActionListener {
         sairBtn.addActionListener(this);
 
         //Add buttons into the window and let it visible
-        veiculosDePasseioTela.add(cadastrarBtn);
-        veiculosDePasseioTela.add(cadastrarTxt);
-        veiculosDePasseioTela.add(consultarBtn);
-        veiculosDePasseioTela.add(consultarTxt);
-        veiculosDePasseioTela.add(imprimirBtn);
-        veiculosDePasseioTela.add(imprimirTxt);
-        veiculosDePasseioTela.add(sairBtn);
-        veiculosDePasseioTela.add(sairTxt);
-
-        veiculosDePasseioTela.setLayout(new FlowLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 0;
+        veiculosDePasseioTela.add(cadastrarBtn, c);
+        c.gridx = 1;
+        c.gridy = 0;
+        veiculosDePasseioTela.add(cadastrarTxt, c);
+        c.gridx = 0;
+        c.gridy = 1;
+        veiculosDePasseioTela.add(consultarBtn, c);
+        c.gridx = 1;
+        c.gridy = 1;
+        veiculosDePasseioTela.add(consultarTxt, c);
+        c.gridx = 0;
+        c.gridy = 2;
+        veiculosDePasseioTela.add(imprimirBtn, c);
+        c.gridx = 1;
+        c.gridy = 2;
+        veiculosDePasseioTela.add(imprimirTxt, c);
+        c.gridx = 0;
+        c.gridy = 3;
+        veiculosDePasseioTela.add(sairBtn, c);
+        c.gridx = 1;
+        c.gridy = 3;
+        veiculosDePasseioTela.add(sairTxt, c);
         veiculosDePasseioTela.setVisible(true);
     }
 
